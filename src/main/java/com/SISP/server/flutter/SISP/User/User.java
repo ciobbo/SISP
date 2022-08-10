@@ -6,61 +6,24 @@ import javax.persistence.*;
 //ciao andrei guarda come mi diverto
 @Table
 @Entity(name = "USERS_SISP")
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Entity
 public class User {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private String name_user;
+
+    @Column(name="name_user")
+    private String name;
     private String psw;
-    private int enable_request;
+    @Column(name="enable_request")
+    private int enableRequest;
 
-    public User() {
-    }
 
-    public User(int id, String name_user, String psw, int enable_request) {
-        this.id = id;
-        this.name_user = name_user;
-        this.psw = psw;
-        this.enable_request = enable_request;
-    }
-
-    public User(String name, String psw, int enable_request) {
-        this.name_user = name;
-        this.psw = psw;
-        this.enable_request = enable_request;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getName_user() {
-        return name_user;
-    }
-
-    public void setName_user(String name) {
-        this.name_user = name;
-    }
-
-    public String getPsw() {
-        return psw;
-    }
-
-    public void setPsw(String psw) {
-        this.psw = psw;
-    }
-
-    public int getEnable_request() {
-        return enable_request;
-    }
-
-    public void setEnable_request(int enable_request) {
-        this.enable_request = enable_request;
-    }
 
     @Override
     public String toString() {
