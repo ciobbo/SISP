@@ -1,6 +1,9 @@
 package com.SISP.server.flutter.SISP.User;
 
 import javax.persistence.*;
+
+
+//ciao andrei guarda come mi diverto
 @Table
 @Entity(name = "USERS_SISP")
 public class User {
