@@ -1,5 +1,10 @@
 package com.SISP.server.flutter.SISP.User;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import javax.persistence.*;
 
 
@@ -10,7 +15,6 @@ import javax.persistence.*;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity
 public class User {
 
     @Id
@@ -29,9 +33,9 @@ public class User {
     public String toString() {
         return "User{" +
                 "id=" + id +
-                ", name_user='" + name_user + '\'' +
+                ", name_user='" + name + '\'' +
                 ", psw='" + psw + '\'' +
-                ", enable_request=" + enable_request +
+                ", enable_request=" + enableRequest +
                 '}';
     }
 }
