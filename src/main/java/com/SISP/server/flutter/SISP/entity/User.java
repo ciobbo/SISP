@@ -1,4 +1,4 @@
-package com.SISP.server.flutter.SISP.User;
+package com.SISP.server.flutter.SISP.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
