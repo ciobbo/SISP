@@ -8,11 +8,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
 
+import static com.SISP.server.flutter.SISP.costants.Endpoint.*;
+
 public interface IUserController {
 
     @GetMapping
     List<User> getUser();
 
-    @PostMapping(Endpoint.INSERT)
+    @PostMapping(INSERT)
     void insertUser(@RequestBody User user);
 }
