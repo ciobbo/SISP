@@ -1,6 +1,6 @@
 package com.SISP.server.flutter.SISP.repository;
 
-import com.example.demo.entity.Asset;
+import com.SISP.server.flutter.SISP.entity.Asset;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

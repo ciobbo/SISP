@@ -1,8 +1,8 @@
 package com.SISP.server.flutter.SISP.service;
 
-import com.example.demo.entity.Asset;
-import com.example.demo.repository.AssetRepository;
-import com.example.demo.service.intface.IAssetService;
+import com.SISP.server.flutter.SISP.entity.Asset;
+import com.SISP.server.flutter.SISP.repository.AssetRepository;
+import com.SISP.server.flutter.SISP.service.interfaces.IAssetService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

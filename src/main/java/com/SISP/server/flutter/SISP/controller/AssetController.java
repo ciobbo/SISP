@@ -1,9 +1,9 @@
 package com.SISP.server.flutter.SISP.controller;
 
 
-import com.example.demo.controller.intface.IAssetController;
-import com.example.demo.entity.Asset;
-import com.example.demo.service.AssetService;
+import com.SISP.server.flutter.SISP.controller.interfaces.IAssetController;
+import com.SISP.server.flutter.SISP.entity.Asset;
+import com.SISP.server.flutter.SISP.service.AssetService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -11,7 +11,6 @@ import static com.SISP.server.flutter.SISP.costants.Endpoint.*;
 
 import java.util.List;
 
-import static com.example.demo.Constant.*;
 
 @RestController
 @RequestMapping(ASSET)

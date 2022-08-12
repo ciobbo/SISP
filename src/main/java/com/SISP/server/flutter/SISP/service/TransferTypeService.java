@@ -1,8 +1,8 @@
 package com.SISP.server.flutter.SISP.service;
 
-import com.example.demo.entity.TransferType;
-import com.example.demo.repository.TransferTypeRepository;
-import com.example.demo.service.intface.ITransferTypeService;
+import com.SISP.server.flutter.SISP.entity.TransferType;
+import com.SISP.server.flutter.SISP.repository.TransferTypeRepository;
+import com.SISP.server.flutter.SISP.service.interfaces.ITransferTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

@@ -1,6 +1,6 @@
 package com.SISP.server.flutter.SISP.repository;
 
-import com.example.demo.entity.Transfer;
+import com.SISP.server.flutter.SISP.entity.Transfer;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;

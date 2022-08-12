@@ -1,8 +1,8 @@
 package com.SISP.server.flutter.SISP.controller;
 
-import com.example.demo.controller.intface.ITransferTypeController;
-import com.example.demo.entity.TransferType;
-import com.example.demo.service.TransferTypeService;
+import com.SISP.server.flutter.SISP.controller.interfaces.ITransferTypeController;
+import com.SISP.server.flutter.SISP.entity.TransferType;
+import com.SISP.server.flutter.SISP.service.TransferTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
 import static com.SISP.server.flutter.SISP.costants.Endpoint.*;

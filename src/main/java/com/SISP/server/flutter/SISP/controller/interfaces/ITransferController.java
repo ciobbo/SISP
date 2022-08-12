@@ -1,12 +1,11 @@
 package com.SISP.server.flutter.SISP.controller.interfaces;
 
-import com.example.demo.entity.Transfer;
+import com.SISP.server.flutter.SISP.entity.Transfer;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 import static com.SISP.server.flutter.SISP.costants.Endpoint.*;
-import static com.example.demo.Constant.*;
 
 @RestController
 public interface ITransferController {
