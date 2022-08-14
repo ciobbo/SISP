@@ -9,4 +9,6 @@ public interface IUserService {
      List<User> getUser();
      void insertUser(User user);
 
+     void deleteUser(Integer id) throws Exception;
+
 }

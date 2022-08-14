@@ -27,6 +27,9 @@ public class User {
     @Column(name="enable_request")
     private int enableRequest;
 
+    @Column(name = "flag_deleted")
+    private int deleted;
+
 
 
     @Override

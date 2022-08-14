@@ -24,4 +24,6 @@ public class UserController implements IUserController {
     public void insertUser(@RequestBody User user){
         userService.insertUser(user);
     }
+
+    public void deleteUser(Integer id) throws Exception { userService.deleteUser(id);}
 }
