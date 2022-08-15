@@ -20,6 +20,12 @@ public class Asset {
     @Column(name = "id_asset")
     @JoinColumn(name="asset")
     private Long idAsset;
+
+    @Column(name = "id_user")
+    @JoinColumn(name = "id")
+    @ManyToOne
+    private Integer idUser;
+
     @Column(name = "asset_desc")
     private String assetDesc;
     @Column(name = "asset_value")

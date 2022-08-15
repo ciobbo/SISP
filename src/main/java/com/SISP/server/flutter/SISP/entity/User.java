@@ -30,6 +30,11 @@ public class User {
     @Column(name = "flag_deleted")
     private int deleted;
 
+    @Column(name = "asset")
+    @OneToMany
+    @JoinColumn(name="asset", referencedColumnName = "id_asset")
+    private Long asset;
+
 
 
     @Override
