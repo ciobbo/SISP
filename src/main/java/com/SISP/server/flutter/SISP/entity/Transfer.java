@@ -23,12 +23,12 @@ public class Transfer {
     private Long idTransfer;
     @Column(name = "tr_date")
     private Date date;
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name="asset", referencedColumnName = "id_asset")
     private Asset asset;
     @Column(name = "amount")
     private Float amount;
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name="tr_type", referencedColumnName = "id_transfertype")
     private TransferType transferType;
     @Column(name = "flag_deleted")
