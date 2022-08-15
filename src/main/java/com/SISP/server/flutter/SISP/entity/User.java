@@ -1,11 +1,15 @@
 package com.SISP.server.flutter.SISP.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 
 //ciao andrei guarda come mi diverto
@@ -19,10 +23,11 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
 
     @Column(name="name_user")
     private String name;
+    @Column(name = "psw")
     private String psw;
     @Column(name="enable_request")
     private int enableRequest;
@@ -30,10 +35,23 @@ public class User {
     @Column(name = "flag_deleted")
     private int deleted;
 
+    /*
+     un utente può anche non avere asset associati,
+     ma un asset deve essere mandatoriamente associato ad un utente
+     l'associazione avverà nell'insert dell'asset mentre get user mostrerà gli asset associati
+     */
+    @OneToMany(mappedBy = "user")
+    private Set<Asset> asset = new HashSet<>();
+
+
+
+
+
+/*
     @Column(name = "asset")
     @OneToMany
     @JoinColumn(name="asset", referencedColumnName = "id_asset")
-    private Long asset;
+    private List<Asset> asset;*/
 
 
 

@@ -1,5 +1,6 @@
 package com.SISP.server.flutter.SISP.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -21,14 +22,16 @@ public class Asset {
     @JoinColumn(name="asset")
     private Long idAsset;
 
-    @Column(name = "id_user")
-    @JoinColumn(name = "id")
-    @ManyToOne
-    private Integer idUser;
 
-    @Column(name = "asset_desc")
-    private String assetDesc;
+    @JoinColumn(name="user", referencedColumnName = "id")
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JsonIgnore
+    private User user;
+
+    @Column(name = "asset_name")
+    private String assetName;
     @Column(name = "asset_value")
     private Float assetValue;
+
 
 }
