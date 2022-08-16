@@ -18,6 +18,8 @@ public class UserService implements IUserService {
         return userRepository.findAll();
     }
 
+
+
     public void insertUser(User user){
         userRepository.save(user);
     }
@@ -27,7 +29,18 @@ public class UserService implements IUserService {
         User user = userRepository
                 .findById(id)
                 .orElseThrow(()-> new Exception("Risorsa non trovata"));
-        user.setDeleted(1);
+        user.setFlagDeleted(1);
         userRepository.save(user);
     }
+
+    @Override
+    public List<User> getAllActiveUser() {
+        return userRepository.getAllActiveUsers();
+    }
+
+    @Override
+    public List<User> getAllNotActiveUser() {
+        return userRepository.getAllNotActiveUsers();
+    }
+
 }

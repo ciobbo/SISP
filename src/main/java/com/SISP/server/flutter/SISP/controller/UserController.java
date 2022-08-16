@@ -17,13 +17,29 @@ public class UserController implements IUserController {
     @Autowired
     UserService userService;
 
+    @Override
     public List<User> getUser(){
         return userService.getUser();
     }
 
+    @Override
+    public List<User> getAllActiveUsers() {
+        return userService.getAllActiveUser();
+    }
+
+    @Override
+    public List<User> getAllNotActiveUsers() {
+        return userService.getAllNotActiveUser();
+    }
+
+    @Override
     public void insertUser(@RequestBody User user){
         userService.insertUser(user);
     }
 
-    public void deleteUser(Integer id) throws Exception { userService.deleteUser(id);}
+    @Override
+    public String deleteUser(Integer id) throws Exception {
+        userService.deleteUser(id);
+        return "user deleted";
+    }
 }

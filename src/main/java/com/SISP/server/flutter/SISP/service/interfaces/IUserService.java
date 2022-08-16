@@ -11,4 +11,7 @@ public interface IUserService {
 
      void deleteUser(Integer id) throws Exception;
 
+     List<User> getAllActiveUser();
+
+     List<User> getAllNotActiveUser();
 }

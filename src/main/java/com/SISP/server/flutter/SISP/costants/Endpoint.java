@@ -3,7 +3,11 @@ package com.SISP.server.flutter.SISP.costants;
 public class Endpoint {
 
     public final static String USER = "/user";
+
     public final static String INSERT = "/insert";
+    public final static String ACTIVE_USERS = "/active-users";
+
+    public final static String NOT_ACTIVE_USERS = "/not-active-users";
 
     public static final String TRANSFER_HISTORY = "/transfer-history";
     public static final String SHOW_HISTORY = "/show-history";

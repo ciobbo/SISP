@@ -32,8 +32,10 @@ public class User {
     @Column(name="enable_request")
     private int enableRequest;
 
+    //valore 0 per user attivo
+    //valore 1 per user non attivo
     @Column(name = "flag_deleted")
-    private int deleted;
+    private int flagDeleted;
 
     /*
      un utente può anche non avere asset associati,
