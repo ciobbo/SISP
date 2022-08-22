@@ -38,8 +38,15 @@ public class UserController implements IUserController {
     }
 
     @Override
-    public String deleteUser(Integer id) throws Exception {
+    public String deleteUser(Long id) throws Exception {
         userService.deleteUser(id);
         return "user deleted";
     }
+
+    @Override
+    public User getUserById(Long id) throws Exception {
+        return userService.getUserById(id);
+    }
+
+
 }

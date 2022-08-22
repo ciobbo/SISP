@@ -18,6 +18,9 @@ public class UserService implements IUserService {
         return userRepository.findAll();
     }
 
+    public User getUserById(Long id) throws Exception {
+        return userRepository.findById(id).orElseThrow(()-> new Exception("User not found"));
+    }
 
 
     public void insertUser(User user){
@@ -25,7 +28,7 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public void deleteUser(Integer id) throws Exception {
+    public void deleteUser(Long id) throws Exception {
         User user = userRepository
                 .findById(id)
                 .orElseThrow(()-> new Exception("Risorsa non trovata"));

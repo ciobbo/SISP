@@ -23,7 +23,10 @@ public interface IUserController {
     void insertUser(@RequestBody User user);
 
     @PutMapping(DELETE + ID)
-    String deleteUser(@PathVariable Integer id) throws Exception;
+    String deleteUser(@PathVariable Long id) throws Exception;
+
+    @GetMapping(GET_USER + ID)
+    User getUserById(@PathVariable Long id) throws Exception;
 
 
 }

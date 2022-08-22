@@ -9,9 +9,11 @@ public interface IUserService {
      List<User> getUser();
      void insertUser(User user);
 
-     void deleteUser(Integer id) throws Exception;
+     void deleteUser(Long id) throws Exception;
 
      List<User> getAllActiveUser();
 
      List<User> getAllNotActiveUser();
+
+     User getUserById(Long id) throws Exception;
 }

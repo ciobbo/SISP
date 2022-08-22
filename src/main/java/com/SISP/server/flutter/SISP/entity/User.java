@@ -8,7 +8,6 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 
@@ -23,7 +22,7 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
 
     @Column(name="name_user")
     private String name;
@@ -43,6 +42,7 @@ public class User {
      l'associazione avverà nell'insert dell'asset mentre get user mostrerà gli asset associati
      */
     @OneToMany(mappedBy = "user")
+    @JsonIgnore
     private Set<Asset> asset = new HashSet<>();
 
 

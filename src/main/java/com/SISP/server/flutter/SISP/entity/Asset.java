@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.lang.NonNull;
 
 import javax.persistence.*;
 
@@ -25,11 +26,12 @@ public class Asset {
 
     @JoinColumn(name="user", referencedColumnName = "id")
     @ManyToOne(cascade = CascadeType.ALL)
-    @JsonIgnore
+    //@JsonIgnore
     private User user;
 
     @Column(name = "asset_name")
     private String assetName;
+
     @Column(name = "asset_value")
     private Float assetValue;
 
