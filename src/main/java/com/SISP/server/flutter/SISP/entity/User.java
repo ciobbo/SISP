@@ -20,6 +20,7 @@ import java.util.Set;
 @AllArgsConstructor
 public class User {
 
+    //prova
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
