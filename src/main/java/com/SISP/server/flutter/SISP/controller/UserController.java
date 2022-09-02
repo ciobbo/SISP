@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import static com.SISP.server.flutter.SISP.costants.Endpoint.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping(USER)
@@ -17,36 +18,43 @@ public class UserController implements IUserController {
     @Autowired
     UserService userService;
 
+
     @Override
-    public List<User> getUser(){
+    public List<User> getUser() {
         return userService.getUser();
     }
 
     @Override
-    public List<User> getAllActiveUsers() {
-        return userService.getAllActiveUser();
+    public String addUser(@RequestBody User NewUser){
+        userService.saveUser(NewUser);
+        return "New User!";
     }
 
     @Override
-    public List<User> getAllNotActiveUsers() {
-        return userService.getAllNotActiveUser();
+    public Optional<User> updateUser(@RequestBody String name, @PathVariable Long id) throws Exception {
+        userService.updateuser(id, name);
+        return userService.getuserbyid(id);
     }
 
     @Override
-    public void insertUser(@RequestBody User user){
-        userService.insertUser(user);
+    public Optional<User> test (@PathVariable Long id){
+        return userService.getuserbyid(id);
     }
 
     @Override
-    public String deleteUser(Long id) throws Exception {
+    public String deleteUser(@PathVariable Long id) {
         userService.deleteUser(id);
-        return "user deleted";
+        return "Deleted user!";
     }
 
     @Override
-    public User getUserById(Long id) throws Exception {
-        return userService.getUserById(id);
+    public String deleteUserLogica(@PathVariable  Long id) throws Exception {
+        userService.deleteUserLogica(id);
+        return "Deleted User!";
     }
 
-
+    @Override
+    public List<User> findAllAndFlag() {
+        return userService.findAllAndFlag();
+    }
 }

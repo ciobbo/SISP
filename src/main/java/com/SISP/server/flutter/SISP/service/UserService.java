@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserService implements IUserService {
@@ -14,36 +15,43 @@ public class UserService implements IUserService {
     @Autowired
     private UserRepository userRepository;
 
+
+    @Override
     public List<User> getUser() {
         return userRepository.findAll();
     }
 
-    public User getUserById(Long id) throws Exception {
-        return userRepository.findById(id).orElseThrow(()-> new Exception("User not found"));
-    }
-
-
-    public void insertUser(User user){
-        userRepository.save(user);
+    @Override
+    public void saveUser(User NewUser) {
+        userRepository.save(NewUser);
     }
 
     @Override
-    public void deleteUser(Long id) throws Exception {
-        User user = userRepository
-                .findById(id)
-                .orElseThrow(()-> new Exception("Risorsa non trovata"));
-        user.setFlagDeleted(1);
-        userRepository.save(user);
+    public Optional<User> getuserbyid(Long id){
+        return userRepository.findById(id);
     }
 
     @Override
-    public List<User> getAllActiveUser() {
-        return userRepository.getAllActiveUsers();
+    public void updateuser(Long id, String name) throws Exception {
+       User updateUser = userRepository.findById(id).orElseThrow(()-> new Exception("user not found"));
+       updateUser.setName(name);
+       userRepository.save(updateUser);
     }
 
     @Override
-    public List<User> getAllNotActiveUser() {
-        return userRepository.getAllNotActiveUsers();
+    public void deleteUser(Long id) {
+        userRepository.deleteById(id);
     }
 
+    @Override
+    public void deleteUserLogica(Long id) throws Exception {
+        User deleteUser = userRepository.findById(id).orElseThrow(()-> new Exception("user not found"));
+        deleteUser.setFlagDeleted(1);
+        userRepository.save(deleteUser);
+    }
+
+    @Override
+    public List<User> findAllAndFlag() {
+        return userRepository.findAllByFlagDeleted(1);
+    }
 }
