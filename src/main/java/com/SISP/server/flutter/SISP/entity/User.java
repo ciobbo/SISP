@@ -36,18 +36,6 @@ public class User {
     @Column(name = "flag_deleted")
     private int flagDeleted;
 
-    /*
-     un utente può anche non avere asset associati,
-     ma un asset deve essere mandatoriamente associato ad un utente
-     l'associazione avverà nell'insert dell'asset mentre get user mostrerà gli asset associati
-     */
-    @OneToMany(mappedBy = "user")
-    @JsonIgnore
-    private Set<Asset> asset = new HashSet<>();
-
-
-
-
 
 /*
     @Column(name = "asset")
