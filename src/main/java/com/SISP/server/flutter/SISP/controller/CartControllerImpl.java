@@ -1,6 +1,6 @@
 package com.SISP.server.flutter.SISP.controller;
 
-import com.SISP.server.flutter.SISP.controller.interfaces.CartCoontroller;
+import com.SISP.server.flutter.SISP.controller.interfaces.CartController;
 import com.SISP.server.flutter.SISP.entity.Cart;
 import com.SISP.server.flutter.SISP.service.CartServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +10,7 @@ import java.util.List;
 
 
 @RestController
-public class CartControllerImpl implements CartCoontroller {
+public class CartControllerImpl implements CartController {
     @Autowired
     private CartServiceImpl cartService;
 

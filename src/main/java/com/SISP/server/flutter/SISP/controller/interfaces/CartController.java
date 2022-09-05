@@ -9,7 +9,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping(CART)
-public interface CartCoontroller {
+public interface CartController {
 
     @GetMapping(value = "/getcarts")
     public List<Cart> getCarts();
