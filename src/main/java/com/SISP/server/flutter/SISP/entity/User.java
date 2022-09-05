@@ -37,7 +37,10 @@ public class User {
     @Column(name = "flag_deleted")
     private int flagDeleted;
 
+    @JsonIgnore
+    @ManyToMany(mappedBy = "enrolledUsers")
 
+    private Set<Cart> cart = new HashSet<>();
 /*
     @Column(name = "asset")
     @OneToMany

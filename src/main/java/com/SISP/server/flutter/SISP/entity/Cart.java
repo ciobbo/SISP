@@ -1,14 +1,17 @@
 package com.SISP.server.flutter.SISP.entity;
 
 
-import jdk.jfr.Name;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.ManyToAny;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Optional;
+import java.util.Set;
 
 @Table
 @Entity(name = "CART")
@@ -27,4 +30,21 @@ public class Cart {
 
     @Column(name = "flag_status")
     private String flag_Status;
+
+    @ManyToMany
+    @JoinTable(
+            name="user_enrolled",
+            joinColumns = @JoinColumn(name="id_cart"),
+            inverseJoinColumns = @JoinColumn(name="id")
+    )
+    private Set<User> enrolledUsers = new HashSet<>();
+
+    public Set<User> getEnrolledUsers() {
+        return enrolledUsers;
+    }
+
+    public void enrollUser(User user) {
+        enrolledUsers.add(user);
+    }
+
 }

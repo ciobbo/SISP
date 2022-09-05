@@ -15,4 +15,5 @@ public class Endpoint {
     public final static String PRODUCT = "/product";
 
     public final static String CART = "/cart";
+
 }

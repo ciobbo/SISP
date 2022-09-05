@@ -4,11 +4,9 @@ import com.SISP.server.flutter.SISP.entity.Product;
 import com.SISP.server.flutter.SISP.service.ProductServiceImpl;
 import com.SISP.server.flutter.SISP.controller.interfaces.ProductController;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import javax.security.auth.Subject;
 import java.util.List;
 import java.util.Optional;
 
