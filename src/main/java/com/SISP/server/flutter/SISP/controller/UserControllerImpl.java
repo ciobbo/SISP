@@ -1,8 +1,8 @@
 package com.SISP.server.flutter.SISP.controller;
 
-import com.SISP.server.flutter.SISP.controller.interfaces.IUserController;
+import com.SISP.server.flutter.SISP.controller.interfaces.UserController;
 import com.SISP.server.flutter.SISP.entity.User;
-import com.SISP.server.flutter.SISP.service.UserService;
+import com.SISP.server.flutter.SISP.service.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import static com.SISP.server.flutter.SISP.costants.Endpoint.*;
@@ -12,11 +12,11 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping(USER)
-public class UserController implements IUserController {
+public class UserControllerImpl implements UserController {
 
 
     @Autowired
-    UserService userService;
+    UserServiceImpl userService;
 
 
     @Override

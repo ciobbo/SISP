@@ -12,4 +12,7 @@ public class Endpoint {
 
     public static final String DELETE = "/delete";
 
+    public final static String PRODUCT = "/product";
+
+    public final static String CART = "/cart";
 }

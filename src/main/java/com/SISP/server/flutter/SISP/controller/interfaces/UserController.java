@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Optional;
 
 
-public interface IUserController {
+public interface UserController {
 
     @GetMapping(value = "/getuser")
     public List<User> getUser();

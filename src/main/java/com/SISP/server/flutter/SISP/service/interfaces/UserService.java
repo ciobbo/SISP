@@ -5,7 +5,7 @@ import com.SISP.server.flutter.SISP.entity.User;
 import java.util.List;
 import java.util.Optional;
 
-public interface IUserService {
+public interface UserService {
 
     public List<User> getUser();
     public void saveUser(User NewUser);
