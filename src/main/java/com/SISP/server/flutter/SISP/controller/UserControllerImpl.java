@@ -37,7 +37,7 @@ public class UserControllerImpl implements UserController {
     }
 
     @Override
-    public Optional<User> test (@PathVariable Long id){
+    public Optional<User> getUserById (@PathVariable Long id){
         return userService.getuserbyid(id);
     }
 

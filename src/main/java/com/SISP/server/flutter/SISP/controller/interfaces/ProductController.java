@@ -12,16 +12,16 @@ import java.util.Optional;
 @RequestMapping(PRODUCT)
 public interface ProductController {
 
-    @GetMapping(value = "/getproduct")
+    @GetMapping(value = "/get-product")
     public List<Product> getproducts();
 
-    @PostMapping(value = "/addproduct")
+    @PostMapping(value = "/add-product")
     public Product addProduct (@RequestBody Product addProduct);
 
-    @DeleteMapping(value = "/deleteproduct/{id}")
+    @DeleteMapping(value = "/delete-product/{id}")
     public String deleteProduct (Long id);
 
-    @GetMapping(value = "/getproduct/{id}")
+    @GetMapping(value = "/get-product/{id}")
     public Optional<Product> getProduct (Long id);
 
     @PutMapping(value = "/update/{id}")

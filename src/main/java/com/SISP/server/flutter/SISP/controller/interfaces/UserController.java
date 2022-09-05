@@ -9,24 +9,24 @@ import java.util.Optional;
 
 public interface UserController {
 
-    @GetMapping(value = "/getuser")
+    @GetMapping(value = "/get-user")
     public List<User> getUser();
 
-    @PostMapping(value="/adduser")
+    @PostMapping(value="/add-user")
     public String addUser(User NewUser);
 
-    @PutMapping(value="/updateuse/{id}")
+    @PutMapping(value="/update-use/{id}")
     public Optional<User> updateUser(String name, Long id) throws Exception;
 
-    @GetMapping(value="/test/{id}")
-    public Optional<User>test(Long id);
+    @GetMapping(value="/get-user-by-id/{id}")
+    public Optional<User>getUserById(Long id);
 
-    @DeleteMapping(value = "/deleteuser/{id}")
+    @DeleteMapping(value = "/delete-user/{id}")
     public String deleteUser(Long id);
 
-    @PutMapping(value = "/deleteuserlogica/{id}")
+    @PutMapping(value = "/delete-user-logica/{id}")
     public String deleteUserLogica(Long id) throws Exception;
 
-    @GetMapping(value = "/findflag")
+    @GetMapping(value = "/find-flag")
     public List<User> findAllAndFlag();
 }

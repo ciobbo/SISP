@@ -11,10 +11,10 @@ import java.util.List;
 @RequestMapping(CART)
 public interface CartController {
 
-    @GetMapping(value = "/getcarts")
+    @GetMapping(value = "/get-carts")
     public List<Cart> getCarts();
 
-    @PostMapping(value= "/addcart")
+    @PostMapping(value= "/add-cart")
     public Cart addCart(@RequestBody Cart addCart);
 
 
