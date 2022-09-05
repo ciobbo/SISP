@@ -10,7 +10,7 @@ import java.util.Optional;
 @Service
 public interface CartService {
     public List<Cart> getCarts();
-    public Cart addCart(@RequestBody Cart addcart);
+    public Cart createCart();
     public Optional<Cart> getCart(Long id);
     public Cart updateFlag (Long id) throws Exception;
 }

@@ -2,8 +2,10 @@ package com.SISP.server.flutter.SISP.controller;
 
 import com.SISP.server.flutter.SISP.controller.interfaces.CartController;
 import com.SISP.server.flutter.SISP.entity.Cart;
+import com.SISP.server.flutter.SISP.entity.Product;
 import com.SISP.server.flutter.SISP.entity.User;
 import com.SISP.server.flutter.SISP.repository.CartRepository;
+import com.SISP.server.flutter.SISP.repository.ProductRepository;
 import com.SISP.server.flutter.SISP.repository.UserRepository;
 import com.SISP.server.flutter.SISP.service.CartServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +25,9 @@ public class CartControllerImpl implements CartController {
     @Autowired
     private CartRepository cartRepository;
 
+    @Autowired
+    private ProductRepository productRepository;
+
 
     @Autowired
     private UserRepository userRepository;
@@ -33,8 +38,8 @@ public class CartControllerImpl implements CartController {
     }
 
     @Override
-    public Cart addCart(Cart addCart) {
-        return cartService.addCart(addCart);
+    public Cart createCart() {
+        return cartService.createCart();
     }
 
     @Override
@@ -47,14 +52,11 @@ public class CartControllerImpl implements CartController {
         return cartService.updateFlag(id);
     }
 
-    @PutMapping("/{cartId}/users/{userId}")
-    Cart enrollUserToCart(
-            @PathVariable Long cartId,
-            @PathVariable Long userId
-    ) throws Exception {
+    @PutMapping("/{cartId}/product/{productId}")
+    Cart addProductToCart(@PathVariable Long cartId,@PathVariable Long productId) throws Exception {
         Cart cart = cartRepository.findById(cartId).get();
-        User user = userRepository.findById(userId).get();
-        cart.enrollUser(user);
+        Product product = productRepository.findById(productId).get();
+        cart.addProduct(product);
         return cartRepository.save(cart);
     }
 }

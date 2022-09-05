@@ -1,5 +1,6 @@
 package com.SISP.server.flutter.SISP.service;
 
+import com.SISP.server.flutter.SISP.costants.Utility;
 import com.SISP.server.flutter.SISP.entity.Cart;
 import com.SISP.server.flutter.SISP.repository.CartRepository;
 import com.SISP.server.flutter.SISP.service.interfaces.CartService;
@@ -7,6 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -16,14 +20,21 @@ public class CartServiceImpl implements CartService {
     @Autowired
     private CartRepository cartRepository;
 
+    Utility utils = new Utility();
+
     @Override
     public List<Cart> getCarts() {
         return cartRepository.findAll();
     }
 
     @Override
-    public Cart addCart(@RequestBody Cart addcart) {
-        return cartRepository.save(addcart);
+    public Cart createCart() {
+
+        Cart cartToAdd = new Cart();
+        cartToAdd.setDate(utils.generateCurrentDate());
+        cartToAdd.setFlag_Status("C");
+
+        return cartRepository.save(cartToAdd);
     }
 
     @Override

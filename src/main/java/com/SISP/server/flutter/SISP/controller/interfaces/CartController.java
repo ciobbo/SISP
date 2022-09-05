@@ -16,8 +16,8 @@ public interface CartController {
     @GetMapping(value = "/get-carts")
     public List<Cart> getCarts();
 
-    @PostMapping(value= "/add-cart")
-    public Cart addCart(@RequestBody Cart addCart);
+    @PostMapping(value= "/create-new-cart")
+    public Cart createCart();
 
     @GetMapping(value = "/get-cart/{id}")
     public Optional<Cart> getcart(@PathVariable Long id);
