@@ -53,16 +53,8 @@ public class CartControllerImpl implements CartController {
         return cartService.updateFlag(id);
     }
 
-    @PutMapping("/{cartId}/product")
-    Cart addProductToCart(@PathVariable Long cartId, @RequestParam String name, @RequestBody Integer quantity) throws Exception {
-        Cart cart = cartService.getCart(cartId). orElseThrow(() -> new Exception("Not Found Cart"));
-        if (cart.getFlag_Status().equals("D")){
-            throw new Exception("Cart deleted");
-        }else {
-            Product product = productRepository.findByProductName(name);
-            product.setQuantity(quantity);
-            cart.addProduct(product);
-            return cartRepository.save(cart);
-        }
+    @Override
+    public Cart addProductToCart(@PathVariable Long cartId, @RequestParam String name, @RequestBody Integer quantity) throws Exception {
+            return cartService.addProductToCart(cartId, name, quantity);
     }
 }

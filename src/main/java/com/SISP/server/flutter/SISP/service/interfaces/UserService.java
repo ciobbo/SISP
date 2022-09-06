@@ -14,4 +14,5 @@ public interface UserService {
     public void deleteUser(Long id);
     public void deleteUserLogica (Long id) throws Exception;
     public List<User> findAllAndFlag();
+
 }

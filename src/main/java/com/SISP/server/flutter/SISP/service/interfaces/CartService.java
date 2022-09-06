@@ -2,7 +2,6 @@ package com.SISP.server.flutter.SISP.service.interfaces;
 
 import com.SISP.server.flutter.SISP.entity.Cart;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
 import java.util.Optional;
@@ -13,4 +12,5 @@ public interface CartService {
     public Cart createCart();
     public Optional<Cart> getCart(Long id);
     public Cart updateFlag (Long id) throws Exception;
+    Cart addProductToCart(Long cartId, String name, Integer quantity) throws Exception;
 }

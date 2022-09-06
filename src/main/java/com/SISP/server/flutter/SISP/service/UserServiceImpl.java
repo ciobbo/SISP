@@ -54,4 +54,6 @@ public class UserServiceImpl implements UserService {
     public List<User> findAllAndFlag() {
         return userRepository.findAllByFlagDeleted(1);
     }
+
+
 }
