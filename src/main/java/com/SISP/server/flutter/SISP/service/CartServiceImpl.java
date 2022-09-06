@@ -29,7 +29,6 @@ public class CartServiceImpl implements CartService {
 
     @Override
     public Cart createCart() {
-
         Cart cartToAdd = new Cart();
         cartToAdd.setDate(utils.generateCurrentDate());
         cartToAdd.setFlag_Status("C");

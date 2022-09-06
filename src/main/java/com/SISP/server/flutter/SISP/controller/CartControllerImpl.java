@@ -21,7 +21,7 @@ import java.util.Optional;
 public class CartControllerImpl implements CartController {
     @Autowired
     private CartServiceImpl cartService;
-    
+
     @Autowired
     private CartRepository cartRepository;
 
@@ -31,6 +31,8 @@ public class CartControllerImpl implements CartController {
 
     @Autowired
     private UserRepository userRepository;
+
+
 
     @Override
     public List<Cart> getCarts() {
@@ -53,10 +55,14 @@ public class CartControllerImpl implements CartController {
     }
 
     @PutMapping("/{cartId}/product/{productId}")
-    Cart addProductToCart(@PathVariable Long cartId,@PathVariable Long productId) throws Exception {
-        Cart cart = cartRepository.findById(cartId).get();
-        Product product = productRepository.findById(productId).get();
-        cart.addProduct(product);
-        return cartRepository.save(cart);
+    Cart addProductToCart(@PathVariable Long cartId, @PathVariable Long productId) throws Exception {
+        Cart cart = cartService.getCart(cartId). orElseThrow(() -> new Exception("Not Found Cart"));
+        if (cart.getFlag_Status().equals("D")){
+            throw new Exception("Cart deleted");
+        }else {
+            Product product = productRepository.findById(productId).get();
+            cart.addProduct(product);
+            return cartRepository.save(cart);
+        }
     }
 }
