@@ -9,10 +9,9 @@ import com.SISP.server.flutter.SISP.repository.ProductRepository;
 import com.SISP.server.flutter.SISP.repository.UserRepository;
 import com.SISP.server.flutter.SISP.service.CartServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import javax.websocket.server.PathParam;
 import java.util.List;
 import java.util.Optional;
 
@@ -54,13 +53,14 @@ public class CartControllerImpl implements CartController {
         return cartService.updateFlag(id);
     }
 
-    @PutMapping("/{cartId}/product/{productId}")
-    Cart addProductToCart(@PathVariable Long cartId, @PathVariable Long productId) throws Exception {
+    @PutMapping("/{cartId}/product")
+    Cart addProductToCart(@PathVariable Long cartId, @RequestParam String name, @RequestBody Integer quantity) throws Exception {
         Cart cart = cartService.getCart(cartId). orElseThrow(() -> new Exception("Not Found Cart"));
         if (cart.getFlag_Status().equals("D")){
             throw new Exception("Cart deleted");
         }else {
-            Product product = productRepository.findById(productId).get();
+            Product product = productRepository.findByProductName(name);
+            product.setQuantity(quantity);
             cart.addProduct(product);
             return cartRepository.save(cart);
         }

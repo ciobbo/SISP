@@ -13,4 +13,5 @@ public interface ProductService {
     public void deleteProduct (Long id);
     public Optional<Product> getProduct(Long id);
     public void updateProduct(Long id, String name) throws Exception;
+    public Product getProductByName(String nameProduct);
 }

@@ -25,5 +25,4 @@ public interface CartController {
     @PutMapping(value = "/update-flag/{id}")
     public Cart updateFlag(@PathVariable Long id) throws Exception;
 
-
 }

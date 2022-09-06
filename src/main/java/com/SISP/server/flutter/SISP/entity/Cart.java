@@ -1,6 +1,7 @@
 package com.SISP.server.flutter.SISP.entity;
 
 
+import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -28,6 +29,7 @@ public class Cart {
     @Column(name = "date")
     private Date date;
 
+    @NotNull
     @Column(name = "flag_status")
     private String flag_Status;
 

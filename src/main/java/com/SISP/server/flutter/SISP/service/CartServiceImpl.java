@@ -2,6 +2,7 @@ package com.SISP.server.flutter.SISP.service;
 
 import com.SISP.server.flutter.SISP.costants.Utility;
 import com.SISP.server.flutter.SISP.entity.Cart;
+import com.SISP.server.flutter.SISP.entity.Product;
 import com.SISP.server.flutter.SISP.repository.CartRepository;
 import com.SISP.server.flutter.SISP.service.interfaces.CartService;
 import org.springframework.beans.factory.annotation.Autowired;
