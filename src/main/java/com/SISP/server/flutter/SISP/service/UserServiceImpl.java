@@ -1,5 +1,6 @@
 package com.SISP.server.flutter.SISP.service;
 
+import com.SISP.server.flutter.SISP.dto.CartDto;
 import com.SISP.server.flutter.SISP.dto.UserDto;
 import com.SISP.server.flutter.SISP.repository.UserRepository;
 import com.SISP.server.flutter.SISP.entity.User;
@@ -17,6 +18,7 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private UserRepository userRepository;
 
+    UserDto userDto = new UserDto();
 
     @Override
     public List<User> getUser() {
@@ -57,6 +59,12 @@ public class UserServiceImpl implements UserService {
         return userRepository.findAllByFlagDeleted(1);
     }
 
-
-
+    @Override
+    public List<UserDto> getAllUsersCart() {
+        return ((List<User>) userRepository
+                .findAll())
+                .stream()
+                .map(user -> userDto.convertDataIntoDTO(user))
+                .collect(Collectors.toList());
+    }
 }

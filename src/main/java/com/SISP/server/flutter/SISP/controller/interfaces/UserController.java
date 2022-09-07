@@ -1,5 +1,6 @@
 package com.SISP.server.flutter.SISP.controller.interfaces;
 
+import com.SISP.server.flutter.SISP.dto.UserDto;
 import com.SISP.server.flutter.SISP.entity.User;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,14 +13,14 @@ public interface UserController {
     @GetMapping(value = "/get-user")
     public List<User> getUser();
 
-    @PostMapping(value="/add-user")
+    @PostMapping(value = "/add-user")
     public String addUser(User NewUser);
 
-    @PutMapping(value="/update-use/{id}")
+    @PutMapping(value = "/update-use/{id}")
     public Optional<User> updateUser(String name, Long id) throws Exception;
 
-    @GetMapping(value="/get-user-by-id/{id}")
-    public Optional<User>getUserById(Long id);
+    @GetMapping(value = "/get-user-by-id/{id}")
+    public Optional<User> getUserById(Long id);
 
     @DeleteMapping(value = "/delete-user/{id}")
     public String deleteUser(Long id);
@@ -29,4 +30,8 @@ public interface UserController {
 
     @GetMapping(value = "/find-flag")
     public List<User> findAllAndFlag();
+
+    @GetMapping(value = "/map")
+    public List<UserDto> getAllUsersCartgetAllUsersCart();
+
 }
