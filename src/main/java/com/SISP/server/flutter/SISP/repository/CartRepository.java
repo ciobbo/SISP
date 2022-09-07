@@ -1,5 +1,6 @@
 package com.SISP.server.flutter.SISP.repository;
 
+import com.SISP.server.flutter.SISP.dto.CartDto;
 import com.SISP.server.flutter.SISP.entity.Cart;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

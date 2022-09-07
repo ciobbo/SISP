@@ -1,5 +1,6 @@
 package com.SISP.server.flutter.SISP.service.interfaces;
 
+import com.SISP.server.flutter.SISP.dto.UserDto;
 import com.SISP.server.flutter.SISP.entity.User;
 
 import java.util.List;
@@ -14,5 +15,4 @@ public interface UserService {
     public void deleteUser(Long id);
     public void deleteUserLogica (Long id) throws Exception;
     public List<User> findAllAndFlag();
-
 }
