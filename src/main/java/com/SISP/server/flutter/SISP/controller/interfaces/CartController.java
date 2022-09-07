@@ -1,5 +1,6 @@
 package com.SISP.server.flutter.SISP.controller.interfaces;
 
+import com.SISP.server.flutter.SISP.dto.CartDto;
 import com.SISP.server.flutter.SISP.entity.Cart;
 import static com.SISP.server.flutter.SISP.costants.Endpoint.*;
 
@@ -25,7 +26,10 @@ public interface CartController {
     @PutMapping(value = "/update-flag/{id}")
     public Cart updateFlag(@PathVariable Long id) throws Exception;
 
-    @PutMapping("/{cartId}/product")
+    @PutMapping("/add-product-to-cart/{cartId}/product")
     Cart addProductToCart(@PathVariable Long cartId, @RequestParam String name, @RequestBody Integer quantity) throws Exception;
+
+    @GetMapping(value = "/map")
+    public List<CartDto> getAllCartproductgetAllCartProduct();
 
 }

@@ -1,10 +1,9 @@
 package com.SISP.server.flutter.SISP.service;
 
 import com.SISP.server.flutter.SISP.costants.Utility;
-import com.SISP.server.flutter.SISP.entity.Cart;
-import com.SISP.server.flutter.SISP.entity.Product;
-import com.SISP.server.flutter.SISP.repository.CartRepository;
-import com.SISP.server.flutter.SISP.repository.ProductRepository;
+import com.SISP.server.flutter.SISP.dto.CartDto;
+import com.SISP.server.flutter.SISP.entity.*;
+import com.SISP.server.flutter.SISP.repository.*;
 import com.SISP.server.flutter.SISP.service.interfaces.CartService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class CartServiceImpl implements CartService {
@@ -23,6 +23,9 @@ public class CartServiceImpl implements CartService {
     ProductRepository productRepository;
 
     Utility utils = new Utility();
+
+    CartDto cartDto = new CartDto();
+
 
     @Override
     public List<Cart> getCarts() {
@@ -68,6 +71,15 @@ public class CartServiceImpl implements CartService {
             return cartRepository.save(cart);
         }
     }
+
+    public List<CartDto> getAllCartProduct() {
+        return ((List<Cart>) cartRepository
+                .findAll())
+                .stream()
+                .map(cart-> cartDto.convertDataIntoDTO(cart))
+                .collect(Collectors.toList());
+    }
+
 
 
 }
