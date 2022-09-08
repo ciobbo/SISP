@@ -1,7 +1,11 @@
 package com.SISP.server.flutter.SISP.controller.interfaces;
 
+import com.SISP.server.flutter.SISP.controller.RoleToUserForm;
+import com.SISP.server.flutter.SISP.controller.UserControllerImpl;
 import com.SISP.server.flutter.SISP.dto.UserDto;
-import com.SISP.server.flutter.SISP.entity.User;
+import com.SISP.server.flutter.SISP.security.Role;
+import com.SISP.server.flutter.SISP.security.User;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -33,5 +37,12 @@ public interface UserController {
 
     @GetMapping(value = "/map")
     public List<UserDto> getAllUsersCartgetAllUsersCart();
+
+    @PostMapping(value = "/add-role")
+    public ResponseEntity<Role> saveRole(Role role);
+
+    @PostMapping(value = "/add-role-to-user")
+    public ResponseEntity<?> addRoleToUser(RoleToUserForm form);
+
 
 }

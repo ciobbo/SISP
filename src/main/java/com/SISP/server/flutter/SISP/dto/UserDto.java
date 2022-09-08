@@ -1,7 +1,7 @@
 package com.SISP.server.flutter.SISP.dto;
 
 import com.SISP.server.flutter.SISP.entity.Cart;
-import com.SISP.server.flutter.SISP.entity.User;
+import com.SISP.server.flutter.SISP.security.User;
 import lombok.Getter;
 import lombok.Setter;
 

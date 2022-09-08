@@ -2,12 +2,19 @@ package com.SISP.server.flutter.SISP.controller;
 
 import com.SISP.server.flutter.SISP.controller.interfaces.UserController;
 import com.SISP.server.flutter.SISP.dto.UserDto;
-import com.SISP.server.flutter.SISP.entity.User;
+import com.SISP.server.flutter.SISP.repository.RoleRepository;
+import com.SISP.server.flutter.SISP.security.Role;
+import com.SISP.server.flutter.SISP.security.User;
 import com.SISP.server.flutter.SISP.service.UserServiceImpl;
+import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+
 import static com.SISP.server.flutter.SISP.costants.Endpoint.*;
 
+import java.net.URI;
 import java.util.List;
 import java.util.Optional;
 
@@ -15,10 +22,11 @@ import java.util.Optional;
 @RequestMapping(USER)
 public class UserControllerImpl implements UserController {
 
-
     @Autowired
     UserServiceImpl userServiceImpl;
 
+    @Autowired
+    RoleRepository roleRepository;
 
     @Override
     public List<User> getUser() {
@@ -64,4 +72,17 @@ public class UserControllerImpl implements UserController {
         List <UserDto> usersLocation = userServiceImpl.getAllUsersCart();
         return usersLocation;
     }
+
+    @Override
+    public ResponseEntity<Role> saveRole(@RequestBody Role role) {
+        URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("/controller/add-role/").toUriString());
+        return ResponseEntity.created(uri).body(userServiceImpl.saveRole(role));
+    }
+
+    @Override
+    public ResponseEntity<?> addRoleToUser(RoleToUserForm form) {
+         userServiceImpl.addRoleToUser(form.getUsername(), form.getRoleName()) ;
+        return ResponseEntity.ok().build();
+    }
 }
+

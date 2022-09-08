@@ -3,8 +3,6 @@ package com.SISP.server.flutter.SISP.controller;
 import com.SISP.server.flutter.SISP.controller.interfaces.CartController;
 import com.SISP.server.flutter.SISP.dto.CartDto;
 import com.SISP.server.flutter.SISP.entity.Cart;
-import com.SISP.server.flutter.SISP.entity.Product;
-import com.SISP.server.flutter.SISP.entity.User;
 import com.SISP.server.flutter.SISP.repository.CartRepository;
 import com.SISP.server.flutter.SISP.repository.ProductRepository;
 import com.SISP.server.flutter.SISP.repository.UserRepository;
@@ -12,7 +10,6 @@ import com.SISP.server.flutter.SISP.service.CartServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import javax.websocket.server.PathParam;
 import java.util.List;
 import java.util.Optional;
 

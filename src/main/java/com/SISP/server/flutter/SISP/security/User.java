@@ -1,4 +1,4 @@
-package com.SISP.server.flutter.SISP.entity;
+package com.SISP.server.flutter.SISP.security;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
@@ -7,8 +7,12 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
+
+import static javax.persistence.FetchType.EAGER;
 
 
 //ciao andrei guarda come mi diverto
@@ -36,8 +40,8 @@ public class User {
     //valore 1 per user non attivo
     @Column(name = "flag_deleted")
     private int flagDeleted;
-
-
+    @ManyToMany(fetch = EAGER)
+    private Collection<Role> roles = new ArrayList<>();
 /*
     @Column(name = "asset")
     @OneToMany
