@@ -2,21 +2,30 @@ package com.SISP.server.flutter.SISP.controller;
 
 import com.SISP.server.flutter.SISP.controller.interfaces.UserController;
 import com.SISP.server.flutter.SISP.dto.UserDto;
-import com.SISP.server.flutter.SISP.repository.RoleRepository;
-import com.SISP.server.flutter.SISP.security.Role;
-import com.SISP.server.flutter.SISP.security.User;
+import com.SISP.server.flutter.SISP.repository.UserRepository;
+import com.SISP.server.flutter.SISP.security.*;
 import com.SISP.server.flutter.SISP.service.UserServiceImpl;
-import lombok.Data;
+import com.auth0.jwt.JWT;
+import com.auth0.jwt.JWTVerifier;
+import com.auth0.jwt.algorithms.Algorithm;
+import com.auth0.jwt.interfaces.DecodedJWT;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import static com.SISP.server.flutter.SISP.costants.Endpoint.*;
+import javax.servlet.http.*;
 
+import static com.SISP.server.flutter.SISP.costants.Endpoint.*;
+import static java.util.Arrays.stream;
+import static org.springframework.http.HttpHeaders.AUTHORIZATION;
+import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
+
+import java.io.IOException;
 import java.net.URI;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping(USER)
@@ -26,7 +35,7 @@ public class UserControllerImpl implements UserController {
     UserServiceImpl userServiceImpl;
 
     @Autowired
-    RoleRepository roleRepository;
+    UserRepository userRepository;
 
     @Override
     public List<User> getUser() {
@@ -69,8 +78,7 @@ public class UserControllerImpl implements UserController {
 
     @Override
     public List<UserDto> getAllUsersCartgetAllUsersCart() {
-        List <UserDto> usersLocation = userServiceImpl.getAllUsersCart();
-        return usersLocation;
+        return userServiceImpl.getAllUsersCart();
     }
 
     @Override
@@ -78,11 +86,45 @@ public class UserControllerImpl implements UserController {
         URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("/controller/add-role/").toUriString());
         return ResponseEntity.created(uri).body(userServiceImpl.saveRole(role));
     }
-
     @Override
-    public ResponseEntity<?> addRoleToUser(RoleToUserForm form) {
-         userServiceImpl.addRoleToUser(form.getUsername(), form.getRoleName()) ;
+    public ResponseEntity<?> addRoleToUser(@RequestBody RoleToUserForm form) {
+         userServiceImpl.addRoleToUser(form.getUsername(), form.getRole_name()) ;
         return ResponseEntity.ok().build();
     }
+
+    @Override
+    public void refreshToken(HttpServletRequest request, HttpServletResponse response) throws IOException {
+            String authorizationHeader = request.getHeader(AUTHORIZATION);
+            if(authorizationHeader != null && authorizationHeader.startsWith("Bearer ")){
+                try {
+                    String refresh_token = authorizationHeader.substring("Bearer ".length());
+                    Algorithm algorithm = Algorithm.HMAC256(("secret".getBytes()));
+                    JWTVerifier verifier = JWT.require(algorithm).build();
+                    DecodedJWT decodedJWT = verifier.verify(refresh_token);
+                    String username = decodedJWT.getSubject();
+                    User user = userRepository.findUserByName(username);
+                    String access_token = JWT.create()
+                            .withSubject(user.getName())
+                            .withExpiresAt(new Date(System.currentTimeMillis() + 10 * 60 * 1000))
+                            .withIssuer(request.getRequestURL().toString())
+                            .withClaim("roles", user.getAddedRoles().stream().map(Role::getName).collect(Collectors.toList()))
+                            .sign(algorithm);
+                    Map<String, String> tokens = new HashMap<>();
+                    tokens.put("access_token", access_token);
+                    tokens.put("refresh_token", refresh_token);
+                    response.setContentType(APPLICATION_JSON_VALUE);
+                    new ObjectMapper().writeValue(response.getOutputStream(), tokens);
+                }catch (Exception exception){
+                    response.setHeader("error", exception.getMessage());
+                    //response.sendError(FORBIDDEN.value());
+                    Map<String, String> error = new HashMap<>();
+                    error.put("error", exception.getMessage());
+                    response.setContentType(APPLICATION_JSON_VALUE);
+                    new ObjectMapper().writeValue(response.getOutputStream(), error);
+                }
+            }else {
+                throw new RuntimeException("Refresh token is missing");
+            }
+        }
 }
 

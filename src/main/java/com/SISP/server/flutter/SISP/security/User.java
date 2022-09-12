@@ -1,5 +1,6 @@
 package com.SISP.server.flutter.SISP.security;
 
+import com.SISP.server.flutter.SISP.entity.Product;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -40,15 +41,24 @@ public class User {
     //valore 1 per user non attivo
     @Column(name = "flag_deleted")
     private int flagDeleted;
-    @ManyToMany(fetch = EAGER)
-    private Collection<Role> roles = new ArrayList<>();
+    @ManyToMany
+    @JoinTable(
+            name="added_roles",
+            joinColumns = @JoinColumn(name="id"),
+            inverseJoinColumns = @JoinColumn(name="role_id")
+    )
+
+    private Set<Role> addedRoles = new HashSet<>();
+
 /*
     @Column(name = "asset")
     @OneToMany
     @JoinColumn(name="asset", referencedColumnName = "id_asset")
     private List<Asset> asset;*/
 
-
+    public void addRoles(Role role) {
+         addedRoles.add(role);
+    }
 
     @Override
     public String toString() {
